@@ -67,3 +67,38 @@
     <!DOCTYPE html>
     ```
 
+<br />
+
+## CH 4. 웹에서 시작하기
+
+### 01. Codepen.io 소개
+
+### 02. 브라우저 스타일 초기화
+  - https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.css
+
+### 03. Emmet
+  - html tag 요소 자동완성 기능
+
+<br />
+
+## CH 5. HTML 개요
+
+### 03. 빈 태그
+  - HTML 1/2/3/4/5
+    - <태그>
+  - XHTML/HTML5
+    - <태그 />
+  - 되도록이면 '엄격하게' 작성
+
+### 04. 글자와 상자
+  - 요소가 화면에 출력되는 특성
+    - inline 요소
+      - 좌 > 우 수평으로 쌓임
+      - width, height 지정 불가
+      - 위/아래 여백은 사용 불가(margin left/right, padding left/right X)
+      - inline 요소 내부에 block 요소를 넣으면 inline 속성이 무시됨
+    - block 요소
+      - 위 > 아래 수직으로 쌓임
+      - width, height 지정 가능
+      - 위/아래/좌/우 여백 모두 사용가능
+      - block 요소 내부에 inline, block 모두 사용가능
