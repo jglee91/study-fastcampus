@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.css">
+  <title>Document</title>
+  <script defer src="./main.js"></script>
+  <style>
+    body {
+      font-size: 50px;
+    }
+    .red {
+      color: red;
+      background: black;
+    }
+    #abc {
+      color: blue;
+    }
+    table {
+
+    }
+    tr {
+
+    }
+    td {
+      border: 1px solid red;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>오늘의 날씨</h1>
+    <h2>오늘의 날씨</h2>
+    <h3>오늘의 날씨</h3>
+    <img src="https://image.ytn.co.kr/general/jpg/2020/1005/202010051110299640_t.jpg" alt="태풍">
+    <br />
+    <ol>
+      <li>사과</li>
+      <li>딸기</li>
+      <li>수박</li>
+      <li>오렌지</li>
+    </ol>
+    <br />
+    <a href="https://naver.com" target="_blank" title="네이버로 이동">NAVER</a>
+    <a href="https://google.com">GOOGLE</a>
+    <br />
+    <!-- 애국가 -->
+    <p>
+      <span id="abc">동해물</span>과 <span class="red">백두산</span>이 마르고 닳도록<br />
+      하느님이 보우하사 <span id="xyz" class="red">우리나라</span> 만세
+    </p>
+    <br />
+    <input type="text" value="heropy" placeholder="이름을 입력하세요!" disabled />
+    <label>
+      <input type="checkbox" checked />
+      Apple
+    </label>
+    <label>
+      <input type="radio" name="fruits" />
+      Apple
+    </label>
+    <label>
+      <input type="radio" name="fruits" />
+      Banana
+    </label>
+    <br />
+    <table>
+      <tr>
+        <td>A</td>
+        <td>B</td>
+        <td>B</td>
+      </tr>
+      <tr>
+        <td>C</td>
+        <td colspan="2">D</td>
+      </tr>
+    </table>
+    <br />
+    <div data-fruit-name="apple">사과</div>
+    <div data-fruit-name="banana">바나나</div>
+  </div>
+</body>
+</html>

@@ -102,3 +102,26 @@
       - width, height 지정 가능
       - 위/아래/좌/우 여백 모두 사용가능
       - block 요소 내부에 inline, block 모두 사용가능
+
+<br />
+
+## CH 6. HTML 핵심 정리
+
+### 02. 핵심 요소 출력 연습
+  - html-core-tags
+
+### 04. 전역 속성
+  - title
+  - style
+  - id, class (selector)
+  - data
+    ``` html
+    <div data-fruit-name="apple">사과</div>
+    <div data-fruit-name="banana">바나나</div>
+    ```
+    ``` js
+    const els = document.querySelectorAll('div');
+    els.forEach(el => {
+      console.log(el.dataset.fruitName);
+    });
+    ```
