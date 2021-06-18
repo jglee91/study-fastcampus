@@ -125,3 +125,54 @@
       console.log(el.dataset.fruitName);
     });
     ```
+
+<br />
+
+## CH 7. CSS 개요
+
+### 03. 선택자_기본
+  - 전체 선택자
+    - *
+  - 태그 선택자
+    - div, li, ...
+  - 클래스 선택자
+    - .class123
+  - 아이디 선택자
+    - #id123
+
+### 04. 선택자_복합
+  - 일치 선택자
+    - span.orange
+  - 자식 선택자
+    - ul > .orange
+  - 하위(후손) 선택자
+    - div .orange
+  - 인접 형제 선택자
+    - .orange + li
+  - 일반 형제 선택자
+    - .orange ~ li
+
+### 05. 선택자_가상 클래스 (1)
+  - :hover
+  - :active
+  - :focus
+  - tabindex 속성을 통해 focus 요소로 만들수 있음
+    - -1이 아닌 다른값을 넣는 것은 논리적 흐름을 방해하므로 권장하지 않음
+
+### 06. 선택자_가상 클래스 (2)
+  - first child
+    - .fruits span:first-child
+  - last child
+    - .fruits h3:last-child
+  - nth child
+    - .fruits *:nth-child(2n + 1)
+  - not
+    - .fruits *:not(span)
+
+### 07. 선택자_가상 요소
+  - ::before, ::after
+    - content 속성과 함께 사용
+
+### 08. 속성 선택자
+  - [disabled]
+  - [type], [type="password"]
