@@ -176,3 +176,10 @@
 ### 08. 속성 선택자
   - [disabled]
   - [type], [type="password"]
+
+### 10. 선택자 우선순위
+  - inline style 방식은 되도록 지양
+  - !important는 되도록 쓰지말자 (정말 필요할때만 쓰자)
+
+<br />
+

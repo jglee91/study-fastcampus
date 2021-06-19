@@ -54,3 +54,19 @@ input:focus {
 [data-fruit-name] {
   color: red;
 }
+
+* {
+
+}
+div {
+  font-size: 70px;
+}
+.hello {
+  color: red !important;
+}
+div.hello {
+  color: green;
+}
+#hello {
+  color: blue;
+}
