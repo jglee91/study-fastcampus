@@ -183,3 +183,67 @@
 
 <br />
 
+## CH 8. CSS 속성
+
+### 01. 개요
+  - 박스 모델
+  - 글꼴, 문자
+  - 배경
+  - 배치
+  - 플렉스(정렬)
+  - 전환
+  - 변환
+  - 띄움
+  - 애니메이션
+  - 그리드
+  - 다단
+  - 필터 - blur, grayscale, reverse
+
+### 02. 너비(width, height)
+  - width, height
+  - max-width, max-height
+  - min-width, min-height
+
+### 03. CSS 단위
+  - px
+  - %
+  - em, rem - font-size 기준
+  - vw, vh - viewport 기준
+
+### 04. 외부 여백(margin)
+  - 단축속성
+  - top, right, bottom, left 순서
+
+### 05. 내부 여백(padding)
+  - 단축속성
+  - top, right, bottom, left 순서
+
+### 06. 테두리 선(border)과 색상 표현
+  - border: 선-두께(border-width) 선-종류(border-style) 선-색상(border-color);
+
+### 07. 모서리 둥글게(border-radius)
+  - border-radius
+  - 왼쪽 상단부터 시계방향 순서
+
+### 08. 크기 계산(box-sizing)
+  - 요소의 크기 계산 기준을 지정
+  - content-box (default)
+  - border-box
+
+### 09. 넘침 제어(overflow)
+  - overflow-x, overflow-y
+    - visible (default)
+    - hidden
+    - auto
+
+### 10. 출력 특성(display)
+  - block
+  - inline
+  - inline-block
+  - flex - 1차원 layout
+  - grid - 2차원 layout
+  - none
+  - table, table-row, table-cell, ...
+
+### 11. 투명도
+  - opacity - 0 ~ 1
