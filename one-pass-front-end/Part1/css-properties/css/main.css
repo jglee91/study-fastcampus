@@ -133,3 +133,47 @@ html {
   background-color: orange;
   opacity: .5;
 }
+
+/* 12. 글꼴 */
+.h1-12 {
+  font-size: 24px;
+  font-weight: 700;
+  font-style: italic;
+  font-family: serif;
+}
+.p-12 {
+  width: 350px;
+  padding: 10px;
+  border: 1px solid;
+  line-height: 1.4;
+}
+
+/* 13. 문자 */
+.a-13 {
+  display: block;
+  width: 200px;
+  height: 100px;
+  background-color: orange;
+  font-size: 22px;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  line-height: 100px;
+}
+.p-13 {
+  font-size: 24px;
+  text-indent: -50px;
+}
+
+/* 14. 배경 */
+.div-14 {
+  /* width: 300px; */
+  height: 200px;
+  background-color: orange;
+  background-image: url("https://heropy.blog/css/images/logo.png");
+  /* background-size: 70px; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-attachment: fixed;
+}

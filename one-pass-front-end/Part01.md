@@ -197,7 +197,7 @@
   - 애니메이션
   - 그리드
   - 다단
-  - 필터 - blur, grayscale, reverse
+  - 필터: blur, grayscale, reverse
 
 ### 02. 너비(width, height)
   - width, height
@@ -207,8 +207,8 @@
 ### 03. CSS 단위
   - px
   - %
-  - em, rem - font-size 기준
-  - vw, vh - viewport 기준
+  - em, rem: font-size 기준
+  - vw, vh: viewport 기준
 
 ### 04. 외부 여백(margin)
   - 단축속성
@@ -240,10 +240,33 @@
   - block
   - inline
   - inline-block
-  - flex - 1차원 layout
-  - grid - 2차원 layout
+  - flex: 1차원 layout
+  - grid: 2차원 layout
   - none
   - table, table-row, table-cell, ...
 
 ### 11. 투명도
   - opacity - 0 ~ 1
+
+### 12. 글꼴
+  - font-style
+  - font-weight: 400(default), 100 ~ 900
+  - font-size: 16px(default)
+  - line-height: 1(default), (px, %) // line-height 내의 요소는 가운데 정렬되려는 특성이 있음
+  - font-family: 글꼴1, "글꼴2", ... 글꼴계열;
+
+### 13. 문자
+  - color: rgb(0,0,0)(default)
+  - text-align: left(default)
+  - text-decoration: none, underline, line-through
+  - text-indent: 0(default)
+
+### 14. 배경
+  - background-color: transparent(default)
+  - background-image: none(default), url(" path ")
+  - background-repeat: repeat(default)
+  - background-position
+    - top, bottom, left, right, center
+    - px, em, rem, ...
+  - background-size: auto(default)
+  - background-attachment: scroll(default) // parallax 구현에 사용
