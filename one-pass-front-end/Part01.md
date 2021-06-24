@@ -269,4 +269,15 @@
     - top, bottom, left, right, center
     - px, em, rem, ...
   - background-size: auto(default)
-  - background-attachment: scroll(default) // parallax 구현에 사용
+  - background-attachment: scroll(default) // fixed - parallax 구현에 사용
+
+### 15. 배치 (1)
+  - position: static(default, 기준없음), relative(자기자신 기준), absolute(부모 기준), fixed(뷰포트 기준)
+    - top, bottom, left, right, z-index
+
+### 16. 배치 (2)
+  - 요소 쌓임 순서(stack order)
+    1. 요소에 position 속성 값 기준(static 제외)
+    2. z-index 속성의 숫자 값
+    3. html 다음 구조
+
