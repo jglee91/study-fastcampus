@@ -204,7 +204,7 @@ html {
   height: 120px;
 }
 
-/* 16. 배치 (1) */
+/* 16. 배치 (2) */
 .wrap-16 {
   width: 400px;
   height: 300px;
@@ -234,4 +234,55 @@ html {
 .container-16 .item-16:nth-child(3) {
   width: 70px;
   height: 120px;
+}
+
+/* 17. 배치 (3) */
+.span-17 {
+  width: 100px;
+  height: 100px;
+  background: orange;
+  font-size: 40px;
+  position: absolute;
+}
+.dummy-17 {
+  height: 100px;
+}
+
+/* 18. 플렉스(정렬) Container (1) */
+.container-18 {
+  background-color: royalblue;
+}
+.container-18 .item-18 {
+  width: 100px;
+  height: 100px;
+  border: 3px dashed red;
+  background-color: orange;
+}
+
+/* 19. 플렉스(정렬) Container (2) */
+.container-19 {
+  width: 250px;
+  background-color: royalblue;
+  display: flex;
+  flex-wrap: wrap;
+}
+.container-19 .item-19 {
+  width: 100px;
+  height: 100px;
+  border: 3px dashed red;
+  background-color: orange;
+}
+.container-19-1 {
+  width: 500px;
+  height: 300px;
+  background-color: royalblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container-19-1 .item-19-1 {
+  width: 100px;
+  height: 100px;
+  border: 3px dashed red;
+  background-color: orange;
 }

@@ -272,7 +272,8 @@
   - background-attachment: scroll(default) // fixed - parallax 구현에 사용
 
 ### 15. 배치 (1)
-  - position: static(default, 기준없음), relative(자기자신 기준), absolute(부모 기준), fixed(뷰포트 기준)
+  - position
+    - static(default, 기준없음), relative(자기자신 기준), absolute(부모 기준), fixed(뷰포트 기준)
     - top, bottom, left, right, z-index
 
 ### 16. 배치 (2)
@@ -281,3 +282,33 @@
     2. z-index 속성의 숫자 값
     3. html 다음 구조
 
+### 17. 배치 (3)
+  - z-index 값은 1부터 늘려가면서 사용(999999 처럼 높여서 쓰지말자)
+  - position이 absolute, fixed가 적용된 요소는 display block 속성이 자동세팅됨
+
+### 18. 플렉스(정렬) Container (1)
+  - 플렉스: 1차원 레이아웃
+  - flex container
+    - display
+    - flex-flow, flex-direction, flex-wrap
+    - justify-content
+    - align-content
+    - align-items
+  - flex items
+    - order
+    - flex, flex-grow, flex-shrink, flex-basis
+    - align-self
+  
+### 19. 플렉스(정렬) Container (2)
+  - flex-wrap
+    - 줄바꿈 처리
+    - nowrap(default), wrap
+  - justify-content
+    - 주 축의 정렬 방법
+    - flex-start(default), flex-end, center
+  - align-content
+    - 교차 축의 여러 줄 정렬 방법
+    - stretch(default), flex-start, flex-end, center
+  - align-items
+    - 교차 축의 한 줄 정렬 방법
+    - stretch(default), flex-start, flex-end, center
