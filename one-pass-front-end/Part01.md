@@ -300,6 +300,9 @@
     - align-self
   
 ### 19. 플렉스(정렬) Container (2)
+  - flex-direction
+    - 정렬 순서
+    - row(default), column, row-revers, column-reverse
   - flex-wrap
     - 줄바꿈 처리
     - nowrap(default), wrap
@@ -312,3 +315,35 @@
   - align-items
     - 교차 축의 한 줄 정렬 방법
     - stretch(default), flex-start, flex-end, center
+
+### 20. 플렉스(정렬) items
+  - order
+    - flex item의 순서
+    - 0(default), 숫자
+  - flex-grow
+    - flex item의 증가 너비 비율
+    - 0(default), 숫자
+  - flex-shrink
+    - flex item의 감소 너비 비율
+    - 1(default), 숫자
+  - flex-basis
+    - flex item의 공간 배분 전 기본 너비
+    - auto(default), 단위(px, em, rem, ...)
+
+### 21. 전환
+  - transition
+    - 요소의 전환효과를 지정하는 단축 속성
+    - transition-property, transition-duration(필수), transition-timing-function, transition-delay
+  - transition-property
+    - 전환 효과를 사용할 속성 이름을 지정
+    - all(default), 속성이름(width, background-color, ...)
+  - transition-duration
+    - 전환 효과의 지속시간을 지정
+    - 0s, 지속시간(초 단위)
+  - transition-timing-function
+    - 전환 효과의 타이밍 함수를 지정
+    - ease(default), linear, ease-in, ease-out, ease-in-out
+    - easing function
+  - transition-delay
+    - 전환 효과가 몇 초 뒤에 시작할지 대기시간을 지정
+    - 0s(default), 시간
