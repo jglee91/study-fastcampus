@@ -347,3 +347,31 @@
   - transition-delay
     - 전환 효과가 몇 초 뒤에 시작할지 대기시간을 지정
     - 0s(default), 시간
+
+### 22. 변환 (1)
+  - transform
+    - 요소의 변환 효과
+    - 원근법 이동 크기 회전 기울임;
+  - 2D 변환 함수
+    - translate(x, y)
+    - translateX(x)
+    - translateY(y)
+    - scale(x, y)
+    - rotate(degree)
+    - skewX(x)
+    - skewY(y)
+  - 3D 변환 함수
+    - rotateX(x)
+    - rotateY(y)
+    - perspective(n) // 원근법 함수는 제일 앞에 작성해야 함
+
+### 23. 변환 (2)
+  - perspective
+    - 하위 요소를 관찰하는 원근 거리를 지정
+      |속성/함수|적용 대상|기준점 설정|
+      |---|---|---|
+      |perspective: 600px;|관찰 대상의 부모|perspective-origin|
+      |transform: perspective(600px)|관찰 대상|transform-origin|
+  - backface-visibility
+    - 3D 변환으로 회전된 요소의 뒷면 숨김 여부
+    - visible(default), hidden
