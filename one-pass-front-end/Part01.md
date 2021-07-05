@@ -418,3 +418,33 @@
 ### 08. 메소드 체이닝
 
 ### 09. 질의응답
+
+<br />
+
+## CH 10. 스타벅스 예제
+
+### 01. 시작하기 - 프로젝트 시작, 스타일 초기화, 파비콘
+- favicon.icon
+- favicon.png
+
+### 02. 시작하기 - 오픈그래프와 트위터 카드
+- Open Graph protocol
+  - 웹페이지가 소셜 미디어로 공유될 때 우선적으로 활용되는 정보를 지정
+  - meta 태그를 활용하여 지정
+    ``` xml
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Starbucks" />
+    ...
+    ```
+- Twitter Cards
+  - 웹페이지가 트위터로 공유될 때 ...
+    ``` xml
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:site" content="Starbucks" />
+    ...
+    ```
+
+### 03. 시작하기 - Google Fonts
+- 브라우저별로 기본 font가 다름
+- https://fonts.google.com/
+- font 사용시 license를 꼭 확인할 것!!
