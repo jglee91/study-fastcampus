@@ -450,3 +450,7 @@
 - font 사용시 license를 꼭 확인할 것!!
 
 ### 04. 시작하기 - Google Material Icons
+
+### 05. 헤더와 드롭다운 메뉴 - 로고
+- 로고, 서브메뉴, 메인메뉴
+- inline 속성 element의 baseline
