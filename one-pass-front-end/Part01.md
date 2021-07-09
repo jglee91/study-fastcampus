@@ -275,6 +275,7 @@
 - position
   - static(default, 기준없음), relative(자기자신 기준), absolute(부모 기준), fixed(뷰포트 기준)
   - top, bottom, left, right, z-index
+  - absolute, fixed일 경우, 해당 요소는 자동으로 display 속성이 block 으로 변경됨
 
 ### 16. 배치 (2)
 - 요소 쌓임 순서(stack order)
@@ -454,3 +455,8 @@
 ### 05. 헤더와 드롭다운 메뉴 - 로고
 - 로고, 서브메뉴, 메인메뉴
 - inline 속성 element의 baseline
+
+### 06. 헤더와 드롭다운 메뉴 - 서브 메뉴
+- URL hash
+  - css id 선택자를 이용해 페이지 내 특정 위치로 이동 가능
+  - \# 기호
