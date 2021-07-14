@@ -507,3 +507,9 @@
 - css calc
 - 화면 확대/축소와 관계없이 가운데 정렬
   - left 50% 스타일 적용 후, margin-left 값을 부모 너비의 50%만큼 -로 처리(right 스타일을 썼다면 margin-right)
+
+### 19. 요소 슬라이드 - 프로모션 이미지 슬라이드(1)
+- swiper pagination
+- swiper navigation
+
+### 20. 요소 슬라이드 - 프로모션 이미지 슬라이드(2)
