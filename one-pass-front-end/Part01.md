@@ -484,3 +484,26 @@
 ### 13. 순차적 애니메이션 - 전역 버튼 스타일 (1)
 
 ### 14. 순차적 애니메이션 - 전역 버튼 스타일 (2)
+
+
+### 15. 순차적 애니메이션 - 순차적으로 요소 보이기
+
+### 16. 요소 슬라이드 - 공지사항
+
+### 17. 요소 슬라이드 - 수직 슬라이드(Swiper)
+- swiper js lib
+- css, js 필요
+  ``` html
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        ...
+      </div>
+    </div>
+  </div>
+  ```
+
+### 18. 요소 슬라이드 - 요소 가운데 배치
+- css calc
+- 화면 확대/축소와 관계없이 가운데 정렬
+  - left 50% 스타일 적용 후, margin-left 값을 부모 너비의 50%만큼 -로 처리(right 스타일을 썼다면 margin-right)
