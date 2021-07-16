@@ -470,7 +470,7 @@
 - ul 태그가 중첩되어 있으므로 자식 선택자(>) 사용
 
 ### 10. 헤더와 드롭다운 메뉴 - BEM
-- Block Element Modifier
+- BEM(Block Element Modifier)
   - HTML 클래스 속성의 작명법
   - 요소__일부분
   - 요소--상태
@@ -518,3 +518,29 @@
 
 
 ### 22. 유튜브 영상 배경 - 리워즈
+
+### 23. 유튜브 영상 배경 - Youtube iframe API (1)
+  ``` html
+  <div class="container">
+    <div class="item"></div>
+  </div>
+  ```
+  ``` css
+  .container {
+    width: 100px;
+    background-color: royalblue;
+  }
+  /*
+    이렇게 지정하면 상대적인 값으로 인해
+    container element가 16:9 비율로 설정된다
+    (일반적인 영상화면 비율)
+  */
+  .container .item {
+    width: 100%;
+    height: 0;
+    padding-top: 56.25%;
+  }
+  ```
+
+### 24. 유튜브 영상 배경 - Youtube iframe API (2)
+- youtube iframe api
