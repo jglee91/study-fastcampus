@@ -544,3 +544,12 @@
 
 ### 24. 유튜브 영상 배경 - Youtube iframe API (2)
 - youtube iframe api
+
+### 25. 유튜브 영상 배경 - 반복 애니메이션
+- gsap easing
+
+### 26. 고정 이미지 배경
+- css parallax
+  - background-attachment: fixed;
+
+### 27. 3D 애니메이션
