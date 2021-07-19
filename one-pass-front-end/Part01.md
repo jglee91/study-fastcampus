@@ -553,3 +553,18 @@
   - background-attachment: fixed;
 
 ### 27. 3D 애니메이션
+
+### 28. 스크롤 위치 계산 애니메이션 (1)
+- scrollMagic js lib
+
+### 29. 스크롤 위치 계산 애니메이션 (2)
+
+### 30. 다중 요소 슬라이드
+
+### 31. 푸터
+- html entities
+  - &copy;, &lt;, &gt;, ...
+- img 요소가 display:block, margin:0 auto 인 경우, width 속성이 없어도 가운데 정렬이 가능
+  - browser가 img너비를 계산해서 알고있기 때문
+
+### 32. 페이지 상단으로 이동 (ScrollTo)
