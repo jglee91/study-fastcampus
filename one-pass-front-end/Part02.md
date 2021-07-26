@@ -104,3 +104,14 @@ $ git log
   $ git branch
   $ git checkout signin # signin branch로 변경
   ```
+  
+### 07. 로그인 페이지 개발(1)
+``` cmd
+# branch가 starbucks-signin인지 확인
+$ git status
+$ git add .
+$ git status
+$ git commit -m '공통 모듈 분리'
+```
+
+### 08. 로그인 페이지 개발(2)
