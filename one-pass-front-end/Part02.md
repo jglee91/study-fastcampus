@@ -115,3 +115,115 @@ $ git commit -m '공통 모듈 분리'
 ```
 
 ### 08. 로그인 페이지 개발(2)
+
+### 09. 로그인 브랜치 병합(Pull Request)
+``` cmd
+# branch를 원격저장소로 push
+$ git push origin starbucks-signin
+```
+- github 저장소에 아래와 같이 추가된 branch 정보가 있는지 확인
+  <img src="./Part2/capture/added_git_branch.PNG" style="margin-top: 4px;" />
+- github 저장소에서 Pull requests 클릭
+- New pull request 클릭
+- 왼쪽은 병합대상 branch, 오른쪽은 변경 branch
+- 아래 내용으로 변경사항을 확인할 수 있음
+- Create pull request 클릭
+  - conflict 발생시, 변경사항을 수정하여 merge conflict 가능
+
+### 10. 프로젝트 복제(Clone)
+``` cmd
+$ git clone ${remote git repository url}
+```
+
+### 11. 연습-버전 되돌리기(Reset)
+``` cmd
+$ git init
+$ git status
+$ git add .
+$ git status
+$ git commit -m '1'
+$ git log
+
+# 파일 변경
+
+$ git status
+$ git commit -am '2'
+$ git log
+
+# git 버전 변경
+
+$ git reset --hard HEAD~1  # HEAD에서 바라보는 버전 - 1로 이동
+$ git reset --hard ORIG_HEAD  # 기존 HEAD로 버전 되돌리기
+$ git reset --hard HEAD~2  # HEAD에서 바라보는 버전 - 2로 이동
+# reset 명령어는 조심해서 다룰 것!
+
+$ git branch purple
+$ git branch
+$ git checkout purple
+
+# 파일 추가
+
+$ git status
+$ git commit -m 'purple/1'
+$ git checkout master  # checkout 하면 purple branch에서 작업한 파일이 사라짐
+
+# 파일 변경
+
+$ git commit -m '4'
+
+# github repository 생성
+# git remote 주소 복사
+
+$ git remote add origin ${url}
+$ git push origin master
+
+$ git checkout purple
+$ git push origin purple
+```
+
+### 12. 연습-다른 환경에서 시작하기
+``` cmd
+# 다른 PC에서 접속했다는 가정
+# 위에서 push한 github url 복사
+
+$ git clone ${url}  # master branch
+$ git branch -r
+
+# 실제 프로젝트에서는 필요한 branch만 따와서 작업하면서 관리
+
+$ git checkout -t origin/purple
+$ git branch
+$ git checkout master
+$ git branch -d purple  # 현재 branch를 지울 수 없으므로 다른 branch로 이동 후 제거
+$ git checkout -b yellow  # branch 생성과 함께 이동
+$ git push origin yellow
+```
+
+### 13. 연습-충돌(Conflict), 로컬병합(Merge)
+``` cmd
+# 파일 수정
+
+$ git status
+$ git add .
+$ git commit -m 'XYZ'
+$ git push origin master
+
+
+# 다른 환경에서 위에서 변경한 동일파일 수정
+
+$ git commit -am 'ABC'  # add와 함께 commit
+$ git push origin master  # local과 원격저장소가 서로 달라서 충돌 오류와 함께 종료
+$ git pull origin master  # terminal에 CONFLICT 메세지가 나타남
+
+  현재 변경 사항 수락|수신 변경 사항 수락|두 변경 사항 모두 수락|변경 사항 비교
+  <<<<<<<<<<<< HEAD
+    <h1>ABC</h1>
+  ========
+    <h1>XYZ</h1>
+  >>>>>>>>>>>> eboiasdfhr26532oihg0af90gh...
+
+# 위 충돌내용을 비교하여 어떤 것을 적용할 것인지 판단 후 수정
+
+$ git commit -am 'ABYZ'
+$ git push origin master  # 변경된 내용으로 push
+```
