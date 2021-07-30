@@ -28,7 +28,7 @@
   - BSD License
   - Beerware
 
-<br />
+---
 
 ## CH 2. VS Code
 
@@ -49,7 +49,7 @@
   - auto 검색 후 'auto rename tag' 설치
   - 열림 tag 변경시 닫힘 tag 자동 변경
 
-<br />
+---
 
 ## CH 3. 무작정 시작하기
 
@@ -67,7 +67,7 @@
   <!DOCTYPE html>
   ```
 
-<br />
+---
 
 ## CH 4. 웹에서 시작하기
 
@@ -79,7 +79,7 @@
 ### 03. Emmet
 - html tag 요소 자동완성 기능
 
-<br />
+---
 
 ## CH 5. HTML 개요
 
@@ -103,7 +103,7 @@
     - 위/아래/좌/우 여백 모두 사용가능
     - block 요소 내부에 inline, block 모두 사용가능
 
-<br />
+---
 
 ## CH 6. HTML 핵심 정리
 
@@ -126,7 +126,7 @@
   });
   ```
 
-<br />
+---
 
 ## CH 7. CSS 개요
 
@@ -181,7 +181,7 @@
 - inline style 방식은 되도록 지양
 - !important는 되도록 쓰지말자 (정말 필요할때만 쓰자)
 
-<br />
+---
 
 ## CH 8. CSS 속성
 
@@ -381,7 +381,7 @@
 
 ### 25. Overwatch 캐릭터 선택 예제 (2)
 
-<br />
+---
 
 ## CH 9. JS 선행
 
@@ -420,7 +420,7 @@
 
 ### 09. 질의응답
 
-<br />
+---
 
 ## CH 10. 스타벅스 예제
 > https://github.com/ParkYoungWoong/starbucks-vanilla-app

@@ -228,6 +228,7 @@ $ git commit -am 'ABYZ'
 $ git push origin master  # 변경된 내용으로 push
 ```
 
+---
 
 ## CH 2. Markdown
 
