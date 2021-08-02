@@ -74,3 +74,35 @@ $ npm run build
   $ git push origin master
   # .gitignore에 명시된 디렉토리는 github에 올라가지 않음
   ```
+
+---
+
+## CH 2. JS 시작하기
+
+### 01. 개요(ECMAScript) 및 프로젝트 초기화
+- ECMA-262 기술 규격에 따라 정의하고 있는 표준화된 스크립트 프로그래밍 언어
+- ES5와 ES6 간 차이가 많이 있음
+  - 구버전 브라우저는 ES5까지만 지원하는 경우가 있음
+  - cf) Babel
+
+``` bash
+$ npm init -y
+$ npm i parcel-bundler -D
+```
+
+### 02. 데이터 타입 확인
+- code convention
+
+### 03. 산술, 할당 연산자
+- const, let
+
+### 09. 변수 유효범위
+- var, let, const
+- var는 함수레벨 / let, const는 블록레벨
+- var를 권장하지 않는 이유는 함수레벨로 인해 개발자 의도와 달리 메모리 누수가 발생할 수 있기 때문
+
+### 10. 형 변환
+- Truthy(참 같은 값)
+  - true, {}, [], 1, 2, 'false', -12, '3.14', ...
+- Falsy(거짓 같은 값)
+  - false, '', null, undefined, 0, -0, NaN
