@@ -142,3 +142,56 @@ if ('false') {
 if (0) {
   console.log(123);
 }
+
+//-------------------------------------------------
+
+// 1. 함수 복습
+function sum(x, y) {
+  return x + y;
+}
+
+console.log(sum(1, 3));
+console.log(sum(4, 12));
+
+// 02. 화살표 함수
+const doubleArrow = (x) => x * 2;
+console.log(`doubleArrow: ${doubleArrow(7)}`);
+
+// 03. IIFE
+(function () {
+  const a = 7;
+  console.log(a * 2);
+}());
+
+// 04. 호이스팅
+const a3_4 = 7;
+
+double();
+
+// 에러 발생
+// const double = function () {
+//   console.log(a3_4 * 2);
+// }
+
+// 에러가 발생하지 않음
+function double() {
+  console.log(a3_4 * 2);
+}
+
+// 05. 타이머 함수
+// const timer = setTimeout(() => console.log('Heropy!'), 3000);
+const timer = setInterval(() => console.log('Heropy!'), 3000);
+
+const h1El = document.querySelector('h1');
+// h1El.addEventListener('click', () => clearTimeout(timer));
+h1El.addEventListener('click', () => clearInterval(timer));
+
+// 06. 콜백
+function timeout(cb) {
+  setTimeout(() => {
+    console.log('Heropy!');
+    cb();
+  }, 3000);
+}
+timeout(() => console.log('Done!'));
+

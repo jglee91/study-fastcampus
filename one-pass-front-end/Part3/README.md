@@ -106,3 +106,26 @@ $ npm i parcel-bundler -D
   - true, {}, [], 1, 2, 'false', -12, '3.14', ...
 - Falsy(거짓 같은 값)
   - false, '', null, undefined, 0, -0, NaN
+
+---
+
+## CH 3. JS 함수
+
+### 01. 함수 복습
+- 익명함수 / 기명함수
+
+### 03. IIFE
+- Immediately-Invoked Function Expression (즉시실행 함수 표현식)
+
+### 04. 호이스팅
+- Hoisting
+- 함수 선언부가 유효범위 최상단으로 끌어올려지는 현상
+
+### 05. 타이머 함수
+- setTimeout
+- setInterval
+- clearTimeout
+- clearInterval
+
+### 06. 콜백
+- 함수의 인수로 사용되는 함수
