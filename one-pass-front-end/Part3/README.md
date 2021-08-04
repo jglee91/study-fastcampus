@@ -129,3 +129,20 @@ $ npm i parcel-bundler -D
 
 ### 06. 콜백
 - 함수의 인수로 사용되는 함수
+
+---
+
+## CH 4. JS 클래스
+
+### 01. 생성자 함수(prototype)
+- literal 방식
+- instance
+- prototype
+
+### 02. this
+- 일반 함수는 호출 위치에 따라 this 정의
+- 화살표 함수는 자신이 선언된 함수 범위에서 this 정의
+
+### 03. ES6 Classes
+
+### 04. 상속(확장)
