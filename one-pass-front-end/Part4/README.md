@@ -3,6 +3,7 @@
 ## CH 1. JS 데이터
 
 ### 01. 문자
+
 - literal
   - 특정한 기호를 통해서 데이터를 손쉽게 만들어내는 방식
 - String
@@ -14,6 +15,7 @@
   - trim
 
 ### 02. 숫자와 수학
+
 - toFixed
 - parseInt
 - parseFloat
@@ -27,6 +29,7 @@
   - random
 
 ### 03. 배열(1)
+
 - Array
   - length
   - find
@@ -35,6 +38,7 @@
   - map
 
 ### 04. 배열(2)
+
 - Array
   - filter
   - findIndex
@@ -45,18 +49,21 @@
   - splice
 
 ### 05. 객체
+
 - Object
   - assign
 - 참조형 데이터
   - {}, [], function, ...
 
 ### 06. 구조 분해 할당
+
 - Destructing assignment
 - 비구조화 할당
 
 ### 07. 전개 연산자
+
 - Spread
-  ``` js
+  ```js
   // rest parameter
   function toObject(a, b, ...c) {
     ...
@@ -64,14 +71,18 @@
   ```
 
 ### 08. 불변성
+
 - Immutability
 - 원시 데이터 : String, Number, Boolean, undefined, null
 - 참조형 데이터: Object, Array, Function
 
 ### 09. 얕은 복사와 깊은 복사
+
 - Shallow copy
+
   - Object.assign
   - Spread operation
+
   ```js
   const user = {
     name: 'Heropy',
@@ -86,9 +97,12 @@
   console.log(user === copyUser); // false
   console.log(user.emails === copyUser.emails); // true
   ```
+
 - Deep copy
+
   - 객체 내부 데이터까지 모두 복사
   - lodash 라이브러리 활용
+
   ```js
   import _ from 'lodash';
 
@@ -97,7 +111,7 @@
     age: 85,
     emails: ['thesecon@gmail.com'],
   };
-  const copyUser = _.cloenDeep(user);;
+  const copyUser = _.cloenDeep(user);
 
   user.emails.push('neo@zillinks.com');
 
@@ -105,3 +119,46 @@
   console.log(user === copyUser); // false
   console.log(user.emails === copyUser.emails); // false
   ```
+
+---
+
+## CH 2. JS 데이터 실습
+
+### 01. 가져오기, 내보내기
+
+- import
+- export
+  - default export
+  - named export
+
+### 02. Lodash 사용법
+
+- uniqBy
+- unionBy
+- find
+- findIndex
+- remove
+
+### 03. JSON
+
+- JavaScript Object Notation
+- Key-Value pair
+- XML 대체
+- application/json
+
+### 04. Storage
+
+- localStorage
+- sessionStorage
+  - setItem
+  - getItem
+  - removeItem
+- Lowdb
+  - small JSON database for Node
+
+### 05. OMDb API
+
+- RESTful webservice to obtain movie information
+  - `http://www.omdbapi.com/?apkkey=[yourkey]&`
+  - URL Query String
+- axios
