@@ -47,3 +47,153 @@ b = 39; // error!
 function hello(c: number) {}
 hello('Mark'); // error!
 ```
+
+---
+
+## CH 2. Basic Types
+
+### 01. TypeScript Types vs JavaScript Types
+
+- TypeScript - `Static Types` (set during development)
+- JavaScript - `Dynamic Types` (resolved at runtime)
+
+  ```js
+  // JavaScript
+  function add(n1, n2) {
+    if (typeof n1 !== 'number' || typeof n2 != 'number') {
+      throw new Error('Incorrect input!');
+    }
+    return n1 + n2;
+  }
+  const result = add(39, 28);
+
+  // TypeScript
+  function add(n1: number, n2: number) {
+    return n1 + n2;
+  }
+  const result = add(39, 28);
+  ```
+
+- ECMAScript 표준에 따른 기본 자료형
+  - Boolean
+  - Number
+  - String
+  - Null
+  - Undefined
+  - Symbol (ECMAScript 6에 추가)
+  - Array : object 형
+- TypeScript에 아래 타입이 추가적으로 제공
+  - Any, Void, Never, Unknown
+  - Enum
+  - Tuple : object 형
+
+### 02. Primitive Types
+
+- Primitive Type
+
+  - 오브젝트와 레퍼런스 형태가 아닌 실제 값을 저장하는 자료형
+  - Primitive 형의 내장 함수를 사용 가능한 것은 자바스크립트 처리 방식 덕분
+  - literal 값으로 Primitive 타입의 서브 타입을 나타낼 수 있음
+  - 또는 wrapper 객체로 만들 수 있음
+
+- JavaScript `Literal` vs `Primitive` vs `Object`
+
+  > https://www.dotnetforall.com/learning-javascript-object-primitive-literal/
+
+  ```ts
+  console.log(typeof 'string'); // "string"
+  console.log(typeof String('string')); // "string"
+  console.log(typeof new String('string')); // "object"
+
+  console.log(typeof 123); // "number"
+  console.log(typeof Number(123)); // "number"
+  console.log(typeof new Number(123)); // "object"
+  ```
+
+- Type Casing
+
+  - TypeScript의 핵심 primitive type은 `모두 소문자`
+  - JavaScript 타입(Number, String, Boolean, Symbol, Object)은 언어 primitive를 나타내지 않으며, 타입으로 사용하면 안됨
+    <br/>
+    <br/>
+
+  ```ts
+  // incorrect!
+  function reverse(s: String): String {
+    return s.split('').reverse().join('');
+  }
+  reverse('hello world');
+
+  // follow below
+  function reverse(s: string): string {
+    return s.split('').reverse().join('');
+  }
+  reverse('hello world');
+  ```
+
+### 03. boolean
+
+```bash
+$ npm i typescript -D
+$ npx tsc --init  ## tsconfig.json 파일 생성
+
+$ npx tsc
+```
+
+```ts
+let isOk: Boolean = true; // Primitive Type에 literal 대입은 문제 없음
+let isNotOk: boolean = new Boolean(true); // literal 타입에 Wrapper Object 대입시 에러 발생
+```
+
+### 04. number
+
+- JavaScript와 같이, TypeScript의 모든 숫자는 부동 소수점
+- TypeScript는 16진수 및 10진수 literal 외 ECMAScript 2015에 도입된 2진수 및 8진수 지원
+
+### 05. string
+
+- Template String
+
+```ts
+let sentence: string = 'Hello, my name is ' + fullName + '.\n\nabc';
+
+let sentenceWithTemplate: string = `Hello, my name is ${fullName}.
+
+abc`;
+```
+
+### 06. symbol
+
+- ECMAScript 2015에 추가된 Symbol
+- new 키워드와 함께 사용 불가능
+- Symbol 함수를 사용하여 symbol 타입 생성 가능
+- tsc --init 기본 설정시 typescript compiler가 에러를 발생시키므로, 아래와 같이 설정 필요
+  ```json
+  // tsconfig.json
+  {
+    "lib": ["ES2015", "DOM"]
+  }
+  ```
+- primitive 타입의 값을 담아서 사용
+- 고유하고 수정불가능한 값으로 만들어줌(주로 접근 제어시 많이 사용)
+  ```ts
+  const sym = Symbol();
+  const obj = {
+    [sym]: 'value',
+  };
+  console.log(obj[sym]); // "value"
+  ```
+
+### 07. null & undefined
+
+- 실제로 각각 undefined 및 null 이라는 타입을 가짐
+- void와 마찬가지로 그 자체로는 유용하지 않음
+- 모든 다른 타입에 대한 서브타입으로 존재함
+  - tsconfig 옵션에서 `--strictNullChecks`를 사용하면, null|undefined는 void나 자기 자신들에게만 할당 가능해짐
+  - null|undfined를 할당할 수 있게 하려면 union type을 사용해야함
+- null in JavaScript
+  - null이라는 타입은 null값만 가질 수 있음
+  - typeof 연산자를 통해 조회하면 `object`로 표기됨
+- undefined in JavaScript
+  - object의 property가 없을 때도 undefined
+  - typeof 연산자를 통해 조회하면 `undefined`로 표기됨
