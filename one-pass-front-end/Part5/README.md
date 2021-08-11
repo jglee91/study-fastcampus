@@ -197,3 +197,81 @@ abc`;
 - undefined in JavaScript
   - object의 property가 없을 때도 undefined
   - typeof 연산자를 통해 조회하면 `undefined`로 표기됨
+
+### 08. object
+
+- `primitive type이 아닌 것`을 나타내고 싶을 때 사용하는 타입
+- non-primitive type: `not` number, string, boolean, bigint, symbol, null, undefined
+
+```ts
+// create by object literal
+const person1 = { name: 'Mark', age: 39 };
+
+// person1 is not "object" type
+// person1 is "{name: string, age: number}" type
+
+// create by Object.create
+const person2 = Object.create({ name: 'Mark', age: 39 });
+
+let obj: object = {};
+obj = { name: 'Mark' };
+obj = [{ name: 'Mark' }];
+obj = 39; // error!
+obj = 'Mark'; // error!
+obj = true; // error!
+obj = 100n; // error!
+obj = Symbol(); // error!
+obj = null; // error!
+obj = undefined; // error!
+```
+
+### 09. Array
+
+- 원래 JavaScript에서 **array**는 객체
+
+### 10. Tuple
+
+### 11. any
+
+- 어떤 타입이어도 상관없는 타입
+- 이걸 최대한 쓰지 않는 것이 핵심(any를 난무하면 TypeScript를 쓰는 이유가 사라짐)
+- any는 계속해서 객체를 통해 전파됨
+  ```ts
+  let looselyTyped: any = {};
+  let d = looselyTyped.a.b.c.d;
+  //  ^ = let d: any
+  ```
+
+### 12. unknown
+
+- 동적 API 컨텐츠와 같이 모르는 변수 타입을 묘사할 때 사용
+- any의 타입 안정성을 위해 나온 타입
+- Typescript v3.0부터 지원
+- any보다 Type-safe한 타입
+  - any와 같이 아무거나 할당 가능
+  - 컴파일러가 타입 추론을 가능하게끔 타입 유형을 좁히거나,
+  - 타입을 확정해주지 않으면 다른 곳에 할당할 수 없고, 사용도 불가능
+  - Type Guard
+- unknown 타입을 사용하면 runtime error를 줄일 수 있음
+
+### 13. never
+
+- never 타입은 모든 타입의 subtype
+- never에는 그 어떤 것도 할당 불가능
+- 잘못된 타입을 넣는 실수를 막고자 할 때 사용
+
+### 14. void
+
+- 의미상으로 undefined와 동일
+- 보통 함수에서 반환하는 값이 없거나, undefined 반환시 return 타입으로 사용 가능
+
+  ```ts
+  function returnVoid(message: string) {
+    console.log(message);
+    return;
+  }
+
+  function returnVoid2(message: string): void {
+    return undefined;
+  }
+  ```
