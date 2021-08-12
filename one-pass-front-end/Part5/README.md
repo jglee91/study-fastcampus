@@ -275,3 +275,134 @@ obj = undefined; // error!
     return undefined;
   }
   ```
+
+---
+
+## CH 3. Type System
+
+### 01. 작성자와 사용자의 관점으로 코드 바라보기
+
+```js
+// (f2 실행 결과가 NaN을 의도한 것이 아니라면)
+// 이 함수의 작성자는 매개변수 a가 number 타입이라는 가정으로 함수를 작성
+function f2(a) {
+  return a * 38;
+}
+console.log(f2(10)); // 380
+console.log(f2('Mark')); // NaN
+```
+
+```ts
+// a의 타입을 명시하지 않을 경우, any로 추론됨
+// 함수의 리턴 타입은 number로 추론됨 (NaN도 number type)
+function f3(a) {
+  return a * 38;
+}
+console.log(f3(10)); // 380
+console.log(f3('Mark') + 5); // NaN
+```
+
+- tsconfig의 noImplicitAny 옵션을 켜면, any로 추론할 경우 에러를 나타냄
+
+```ts
+// 함수의 리턴 타입은 number로 추론됨
+function f4(a: number) {
+  if (a > 0) {
+    return a * 38;
+  }
+}
+console.log(f4(5)); // 190
+console.log(f4(-5) + 5); // NaN
+```
+
+- tsconfig의 strictNullChecks 옵션을 켜면, 모든 타입에 자동으로 포함되어 있는 `null`과 `undefined`를 제거해줌
+
+```ts
+// (strictNullChecks 옵션을 켠 경우)
+// 함수의 리턴 타입은 number | undefined로 추론됨
+function f4(a: number) {
+  if (a > 0) {
+    return a * 38;
+  }
+}
+// 함수의 리턴 타입이 number | undefined이기 때문에, 타입에 따르면 이어진 연산을 바로 실행할 수 없음
+console.log(f4(5));
+console.log(f4(-5) + 5); // error TS2532: Object is possibly 'undefined'.
+
+// 매개변수, 리턴 타입을 명시적으로 지정
+// error TS2366: Function lacks ending return statement and return type does not include 'undefined'.
+function f5(a: number): number {
+  if (a > 0) {
+    return a * 38;
+  }
+}
+```
+
+- tsconfig의 noImplicitReturns 옵션을 켜면, 함수 내 모든 코드가 값을 리턴하지 않으면 컴파일 에러 발생
+
+```ts
+// 매개변수가 object일 경우, object literal type 지정
+function f7(a: { name: string; age: number }): string {
+  return `이름은 ${a.name}이고, 연령대는 ${
+    Math.floor(a.age / 10) * 10
+  }대 입니다.`;
+}
+console.log(f7({ name: 'Makr', age: 38 })); // 이름은 Mark이고, 연령대는 30대 입니다.
+console.log(f7('Mark')); // error TS2345: Argument of type 'string' is not assignable to parameter of type '{ name: string; age: number; }'.
+```
+
+```ts
+// 나만의 타입을 만드는 방법
+interface PersonInterface {
+  name: string;
+  age: number;
+}
+
+type PersonTypeAlias = {
+  name: string;
+  age: number;
+}
+
+function f8(a: PersonInterface): string {
+  ...
+}
+```
+
+### 02. Structural Type System vs Nominal Type System
+
+- Structural Type System - 구조가 같으면, 같은 타입(TypeScript가 따르는 방식)
+
+  ```ts
+  interface IPerson {
+    name: string;
+    age: number;
+    speak(): string;
+  }
+  type PersonType = {
+    name: string;
+    age: number;
+    speak(): string;
+  };
+
+  let personInterface: IPerson = {} as any;
+  let personType: PersonType = {} as any;
+
+  personInterface = personType;
+  personType = personInterface;
+  ```
+
+- Nominal Type System - 구조가 같아도, 이름이 다르면 다른 타입(C, Java에서 사용하는 방식)
+
+  ```ts
+  type PersonID = string & { readonly brand: unique symbol }; // type intersaction
+
+  function PersonID(id: string): PersonID {
+    return id as PersonID;
+  }
+  function getPersonById(id: PersonID) {}
+
+  getPersonById(PersonID('id-aaaaaa'));
+  getPersonById('id-aaaaaa'); // error TS2345: Argument of type 'string' is not assignable to parameter of type '{ readonly brand: unique symbol }'.
+  ```
+
+- Duck Typing - 타입을 미리 정하지 않고, Runtime시 해당 함수들을 확인하여 타입을 정하는 방식(C++, Python에서 사용하는 방식)
