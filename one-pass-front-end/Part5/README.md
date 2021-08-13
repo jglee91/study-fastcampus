@@ -370,7 +370,7 @@ function f8(a: PersonInterface): string {
 
 ### 02. Structural Type System vs Nominal Type System
 
-- Structural Type System - 구조가 같으면, 같은 타입(TypeScript가 따르는 방식)
+- `Structural Type System` - 구조가 같으면, 같은 타입(TypeScript가 따르는 방식)
 
   ```ts
   interface IPerson {
@@ -391,7 +391,7 @@ function f8(a: PersonInterface): string {
   personType = personInterface;
   ```
 
-- Nominal Type System - 구조가 같아도, 이름이 다르면 다른 타입(C, Java에서 사용하는 방식)
+- `Nominal Type System` - 구조가 같아도, 이름이 다르면 다른 타입(C, Java에서 사용하는 방식)
 
   ```ts
   type PersonID = string & { readonly brand: unique symbol }; // type intersaction
@@ -405,4 +405,156 @@ function f8(a: PersonInterface): string {
   getPersonById('id-aaaaaa'); // error TS2345: Argument of type 'string' is not assignable to parameter of type '{ readonly brand: unique symbol }'.
   ```
 
-- Duck Typing - 타입을 미리 정하지 않고, Runtime시 해당 함수들을 확인하여 타입을 정하는 방식(C++, Python에서 사용하는 방식)
+- `Duck Typing` - 타입을 미리 정하지 않고, Runtime시 해당 함수들을 확인하여 타입을 정하는 방식(C++, Python에서 사용하는 방식)
+
+### 03. 타입 호환성 (Type Compatibility)
+
+- 서브 타입
+
+  ```ts
+  // sub 타입은 sup 타입의 서브 타입
+  let sub1: 1 = 1;
+  let sup1: number = sub1;
+  sub1 = sup1; // error! Type 'number' is not assignable to type '1'.
+
+  let sub2: number[] = [1];
+  let sup2: object = sub2;
+  sub2 = sup2; // error! Type '{}' is missing the following properties from type 'number[]': length, pop, push, concat, and 16 more.
+
+  let sub3: [number, number] = [1, 2]; // Tuple Type
+  let sup3: number[] = sub3;
+  sub3 = sup3; // error! Type 'number[]' is not assignable to type '[number, number]'. Target requires 2 element(s) but source may have fewer.
+
+  let sub4: number = 1;
+  let sup4: any = sub4;
+  sub4 = sup4; // it's ok.
+
+  let sub4: never = 0 as never;
+  let sup5: number = sub5;
+  sub5 = sup5; // error! Type 'number' is not assignable to type 'never'.
+
+  class Animal {}
+  class Dog extends Animal {
+    eat() {}
+  }
+  let sub6: Dog = new Dog();
+  let sup6: Animal = sub6;
+  sub6 = sup6; // error! Property 'eat' is missing in type 'SubAnimal' but required in type 'SubDog'.
+  ```
+
+- 같거나 서브 타입인 경우, 할당이 가능하다. => 공변
+
+  ```ts
+  // primitiye type
+  let sub7: string = '';
+  let sup7: string | number = sub7;
+
+  // object - 각각의 프로퍼티가 대응하는 프로퍼티와 같거나 서브타입
+  let sub8: { a: string; b: number } = { a: '', b: 1 };
+  let sup8: { a: string | number; b: number } = sub8; // it's ok
+
+  // array - object와 마찬가지
+  let sub9: Array<{ a: string; b: number }> = [{ a: '', b: 1 }];
+  let sup9: Array<{ a: string | number; b: number }> = sub9;
+  ```
+
+- 함수의 매개변수 타입만 같거나 슈퍼타입인 경우, 할당이 가능하다. => 반병
+
+  ```ts
+  class Person {}
+  class Developer extends Person {
+    coding() {}
+  }
+  class StartupDeveloper extends Developer {
+    burning() {}
+  }
+
+  function tellme(f: (d: Developer) => Developer) {}
+
+  // Developer => Developer에다가 Developer => Developer를 할당하는 경우
+  tellme(function dToD(d: Developer): Developer {
+    return new Developer();
+  });
+
+  // Developer => Developer에다가 Person => Developer를 할당하는 경우
+  tellme(function pToD(d: Persion): Developer {
+    return new Developer();
+  });
+
+  // Developer => Developer에다가 StartupDeveloper => Developer를 할당하는 경우
+  // tsconfig의 strictFunctionTypes 옵션을 켜면, 에러 발생
+  tellme(function sToD(d: StartupDeveloper): Developer {
+    return new Developer();
+  });
+  ```
+
+### 04. 타입 별칭 (Type Alias)
+
+- Primitive, Union Type, Tuple, Function
+- 만들어진 타입의 refer 용도로 사용
+
+  ```ts
+  // Aliasing Primitive
+  type MyStringType = string;
+
+  const str = 'world';
+  let myStr: MyStringType = 'hello';
+
+  myStr = str;
+
+  // Aliasing Union Type
+  let person: string | number = 0;
+  person = 'Mark';
+
+  type StringOrNumber = string | number;
+
+  let another: StringOrNumber = 0;
+  another = 'Anna';
+
+  // Aliasing Tuple
+  let person: [string, number] = ['Mark', 35];
+
+  type PersonTuple = [string, number];
+
+  let another: PersonTuple = ['Anna', 24];
+
+  // Aliasing Function
+  type EatType = (food: string) => void;
+  ```
+
+---
+
+## CH 4. TypeScript Compiler
+
+### 01. Compilation Context
+
+- for grouping of the files that TypeScript will parse and analyze to determine `what is valid and what isn't`.
+- contains information about which compiler options are in use.
+- using a **`tsconfig.json`** file.
+
+### 02. tsconfig schema
+
+> http://json.schemastore.org/tsconfig
+
+- 최상위 프로퍼티
+  - compileOnSave
+  - extends
+  - compileOptions
+  - files
+  - include
+  - exclude
+  - references
+  - ~~typeAcquisition~~
+  - ~~tsNode~~
+
+### 03. compileOnSave
+
+- default false
+- Visual Studio 2015 with TypeScript 1.8.4 이상 or atom-typescript 플러그인
+
+```json
+// tsconfig.json
+{
+  "compileOnSave": true
+}
+```
