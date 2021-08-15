@@ -558,3 +558,36 @@ function f8(a: PersonInterface): string {
   "compileOnSave": true
 }
 ```
+
+### 04. extends
+
+- 파일(상대)경로명: string
+
+```json
+// tsconfig.json
+{
+  "extends": "./base.json"
+}
+
+// base.json
+{
+  "compilerOptions": {
+    "strict": true
+  }
+}
+```
+
+### 05. files, include, exclude
+
+- 셋 다 설정이 없으면, 전부 다 컴파일
+- files
+  - 상대 or 절대 경로의 array
+  - exclude보다 우선 적용
+- include, exclude
+  - glob pattenrs
+  - include
+    - \* 적용시, .ts, .tsx, .d.ts 파일만 적용 (allowJS)
+  - exclude
+    - include보다 우선 적용
+    - 설정하지 않으면 `node_modules, bower_components, jspm_packages, <outDir>`를 default로 제외함
+    - `<outDir>`은 include에 있어도 항상 제외
