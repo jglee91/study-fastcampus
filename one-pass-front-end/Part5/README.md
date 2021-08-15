@@ -591,3 +591,165 @@ function f8(a: PersonInterface): string {
     - include보다 우선 적용
     - 설정하지 않으면 `node_modules, bower_components, jspm_packages, <outDir>`를 default로 제외함
     - `<outDir>`은 include에 있어도 항상 제외
+
+### 06. compileOptions - typeRoots, types
+
+- 일부 third-party libarary는 일반 js로 작성되어있기 때문에, ts에서 사용할 수 없음
+
+  ```bash
+  # react 설치
+  $ npm i react
+
+  # ts 파일에서 react import시 에러남
+  # 이를 해결하기 위해 types dependency를 설치
+  $ npm i -D @types/react
+  ```
+
+- @types
+  - TypeScript 2.0부터 사용 가능해진 내장 type definition 시스템
+  - 아무 설정을 하지 않으면 node_modules/@types에 해당하는 모든 경로를 찾아서 사용
+  - typeRoots: 해당 array 내의 경로에서만 가져옴
+  - types: 해당 array 혹은 `./node_modules/@types/`경로의 모듈 이름에서 찾아오며, empty array 설정시 해당 옵션이 적용되지 않음
+  - typeRoots와 types 설정은 같이 사용하지 않음
+
+### 07. compileOptions - target과 lib
+
+- target
+
+  - 빌드의 결과물을 어떤 버전으로 할 것인지 설정
+  - default는 `ES3` (일반적으로 `ES5`)
+
+  ```ts
+  // test.ts
+  const hello = () => {};
+
+  // tsc -> test.js (es5)
+  var hello = function () {};
+
+  // tsc -> test.js (es6)
+  const hello = () => {};
+  ```
+
+- lib
+
+  - 기본 type definition lib을 어떤 것을 하용할 것인지 설정
+  - lib을 설정하지 않으면,
+    - target이 `es3` -> `lib.d.ts` 사용
+    - target이 `es5` -> `dom, es5, scripthost` 사용
+    - target이 `es6` -> `dom, es6, iterable, scripthost` 사용
+
+  ```ts
+  // tsconfig.json 에서 lib 설정을 하지 않을 경우(기본적으로 주석처리 되어있음)
+  console.log('lib - default');
+
+  // tsconfig.json 에 lib: [] 설정시
+  console.log('lib - empty'); // compile에 에러 발생, lib.dom.t.ts의 console 설정이 필요함
+  ```
+
+### 08. compileOptions - outDir, outFile, rootDir
+
+- outFile: 단일파일로 bundling시 파일명(module이 system 혹은 amd 같은 형태로 지원이 되어야 가능)
+  > https://www.typescriptlang.org/tsconfig#outFile
+- outDir: 프로젝트 디렉토리 구조와 동일하게 컴파일
+- rootDir: 컴파일시 대상 root 디렉토리
+
+```json
+// tsconfig
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src"
+  }
+}
+```
+
+### 09. compileOptions - strict
+
+- noImplicitAny
+  - 명시적이지 않게 any 타입을 표현식, 선언에 사용하면 에러 발생
+  - typescript가 타입 추론에 실패할 경우, any가 되면서 에러 발생
+  - type이 any라고 지정되어 있지 않은 경우에는 any가 아님
+  - cf) suppressImplicitAnyIndexErros
+- noImplicitThis
+
+  - 명시적이지 않게 any 타입을 this 표현식에 사용하면 에러 발생
+
+  ```ts
+  function noImplicitThisTestFunc(name: string, age: number) {
+    this.name = name; // [ts] 'this' implicitly has type 'any' because it does not have a type annotation
+    this.age = age;
+  }
+
+  // typescript는 아래와 같이 this를 사용할 수 있음
+  function noImplicitThisTestFunc(this: {...}, name: string, age: number) {
+    this.name = name; // [ts] 'this' implicitly has type 'any' because it does not have a type annotation
+    this.age = age;
+  }
+
+  class NoImplicitThisTestClass {
+    private _name: string;
+    private _age: number;
+
+    constructor(name: string, age: number) {
+      this._name = name;
+      this._age = age;
+    }
+
+    public print(this: NoImplicitThisTestClass) {
+      console.log(this._name, this._age);
+    }
+    new NoImplicitThisTestClass('Mark', 36).print();
+  }
+  ```
+
+- strictNullChecks
+  - 해당 옵션을 적용하지 않으면, 모든 타입은 null, undefined 값을 가질 수 있음(사실상 typescript를 사용하는 의미가 무색해짐)
+  - 한 가지 예외로 undefined에 void 할당 가능
+  ```ts
+  const a: number = null; // error!
+  const b: string = undefined; // error!
+  const c: number | null = null;
+  const d: any = null;
+  const e: any = undefined;
+  const f: void = undefined;
+  ```
+- strictFunctionTypes
+  - 함수 타입에 대한 bivariant 매개변수 검사를 비활성화
+    > https://www.stephanboyer.com/post/132/what-are-convariance-and-contravariance
+  - `CH3 - 03. 타입 호환성 (Type Compatibility)` 참고
+  - 반환 타입은 공변적(convariant)
+  - 인자 타입은 반공변적(contravariant)
+  - typescript에서 인자 타입은 공변적이면서, 반공변적인 것이 문제
+  ```ts
+  const button = document.querySelector('#id') as HTMLButtonElement;
+  button.addEventListener('keydown', (e: MouseEvent) => {});
+  ```
+- strictPropertyInitialization
+
+  - 정의되지 않은 클래스의 속성이 생성자에서 초기화되었는지 확인
+
+  ```ts
+  class Person {
+    private _name: string; // error!
+    private _age: number; // error!
+
+    constructor() {}
+  }
+
+  // 다른 함수로 초기화 하는 경우(with async)
+  class Person2 {
+    private _name!: string;
+    private _age!: number;
+
+    public async initialize(name: string, age: number) {
+      this._name = name;
+      this._age = age;
+    }
+  }
+  ```
+
+- strictBindCallApply
+  - Function 내장 함수인 bind, call, apply 사용시 strict check 하는 옵션
+- alwaysStrict
+  - 각 소스 파일에 대해 javascript의 strict mode로 코드를 분석
+  - 컴파일시, 대상 js 파일 상단에 `use strict`가 추가됨
