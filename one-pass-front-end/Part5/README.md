@@ -753,3 +753,35 @@ function f8(a: PersonInterface): string {
 - alwaysStrict
   - 각 소스 파일에 대해 javascript의 strict mode로 코드를 분석
   - 컴파일시, 대상 js 파일 상단에 `use strict`가 추가됨
+
+---
+
+## CH 5. Interfaces
+
+### 01. What are Interfaces
+
+- 어떤 type을 만들어내는 방법
+- interface는 compile time에 에러발생여부 판단, 실제 컴파일된 js에는 interface 관련 내용은 없음
+
+### 02. optional proerty (1)
+
+```ts
+interface Person2 {
+  name: string;
+  age?: number; // optional property
+}
+```
+
+### 03. optional proerty (2)
+
+- indexable type
+
+```ts
+interface Person2 {
+  name: string;
+  age?: number;
+  [index: string]: any; // indexable type
+}
+```
+
+### 04. function in interface
