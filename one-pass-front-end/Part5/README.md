@@ -785,3 +785,9 @@ interface Person2 {
 ```
 
 ### 04. function in interface
+
+### 05. class implements interface
+
+### 06. interface extends interface
+
+### 07. function interface
