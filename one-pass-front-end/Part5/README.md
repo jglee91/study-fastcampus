@@ -791,3 +791,96 @@ interface Person2 {
 ### 06. interface extends interface
 
 ### 07. function interface
+
+### 08. Readonly Interface Properties
+
+### 09. type alias vs interface
+
+- function
+
+  ```ts
+  // type alias
+  type EatType = (food: string) => void;
+
+  // interface
+  interface IEat {
+    (food: string): void;
+  }
+  ```
+
+- array
+
+  ```ts
+  // type alias
+  type PersonList = string[];
+
+  // interface
+  interface IPersonList {
+    [index: number]: string;
+  }
+  ```
+
+- intersection
+
+  ```ts
+  interface ErrorHandling {
+    success: boolean;
+    error?: { message: string };
+  }
+  interface ArtistsData {
+    artists: { name: string }[];
+  }
+
+  // type alias
+  type ArtistsResponseType = ArtistsData & ErrorHandling;
+
+  // interface
+  interface IArtistsResponse extends ArtistsData, ErrorHandling {}
+
+  let art: ArtistsResponseType;
+  let iar: IArtistsResponse;
+  ```
+
+- union types
+
+  ```ts
+  interface Bird {
+    fly(): void;
+    layEggs(): void;
+  }
+  interface Fish {
+    swim(): void;
+    layEggs(): void;
+  }
+
+  type PetType = Bird | Fish;
+
+  interface IPet extends PetType {} // error TS2312: An interface can only extend an object type or intersection of object types with statically known members.
+  interface Pet {} // error TS2422: A class only implement an object type or intersection of object types with statically known members.
+  ```
+
+- declaration merging - interface (HTMLElement 혹은 third-party lib 확장시 주로 사용)
+
+  ```ts
+  interface MergingInterface {
+    a: string;
+  }
+  interface MergingInterface {
+    b: string;
+  }
+
+  let mi: MergingInterface;
+  mi.a;
+  mi.b;
+  ```
+
+- declaration merging - type
+  ```ts
+  type MergingInterface = {
+    a: string;
+  };
+  type MergingInterface = {
+    // error TS2300: Duplicate identifier 'MergingType'.
+    b: string;
+  };
+  ```
