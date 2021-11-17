@@ -794,6 +794,21 @@ interface Person2 {
 
 ### 08. Readonly Interface Properties
 
+```ts
+interface Person8 {
+  name: string;
+  age?: number;
+  readonly gender: string;
+}
+
+const p81: Person8 = {
+  name: 'Mark',
+  gender: 'male',
+};
+
+// p81.gender = 'female'; // cannot assign to 'gender' because it is a read-only property.
+```
+
 ### 09. type alias vs interface
 
 - function
@@ -884,3 +899,68 @@ interface Person2 {
     b: string;
   };
   ```
+
+---
+
+## CH 6. Classes
+
+### 01. What are Classes
+
+- object를 만드는 blueprint
+- es6부터 사용 가능
+- oop을 위한 초석
+- TypeScript에서는 클래스도 사용자가 만드는 타입의 하나
+
+### 02. Quick Start - class
+
+- class 키워드
+- this 사용
+- target이 `es5`인 상태로 컴파일하면 `function`으로 변경됨
+
+### 03. constructor & initialize
+
+- strict 모드에서는 프로퍼티를 선언하는 곳 또는 생성자에서 초기화 작업 필요
+
+  ```ts
+  class Person {
+    name: string = 'Mark';
+    // age!: number; // 의도적으로 옵션처리를 할 수 있으나 지양하는 방법
+    age: number;
+
+    constructor(age?: number) {
+      if (age === undefined) {
+        this.age = 20;
+      } else {
+        this.age = age;
+      }
+    }
+  }
+  ```
+
+- javascript에서는 생성자 오버로딩 불가능
+- 생성자는 async로 사용 불가능
+
+### 04. 접근 제어자 (Access Modifiers)
+
+- public, private, protected
+
+  ```ts
+  class Person {
+    public name: string = 'Mark';
+    private age: number;
+
+    constructor(age?: number) {
+      if (age === undefined) {
+        this.age = 20;
+      } else {
+        this.age = age;
+      }
+    }
+  }
+
+  const p1: Person = new Person();
+  // p1.age // 접근 불가능
+  ```
+
+- 접근제어자는 클래스 내부의 모든 곳에 설정 가능
+- javascript에서는 접근제어자 지원이 안되어 \_를 붙인 `name convention`을 사용했었음
