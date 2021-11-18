@@ -29,3 +29,54 @@
   ```jsx
   const element = <h1 className="title">Hello, world!</h1>;
   ```
+
+### 04. 멀티 Element 생성하기
+
+- Fragment : 부모로써 감싸는 역할
+  ```jsx
+  const rootElement = document.getElementById('root');
+  const element = (
+    <React.Fragment
+      className="box"
+      children = {[
+        React.createElement('h1', null, 'Hi'),
+        React.createElement('h3', null, 'Bye'),
+        React.createElement('h5', null, 'Children'),
+      }]
+    />
+  );
+  ```
+  ```jsx
+  const element = (
+    <>
+      <h1>Hi</h1>
+      <h3>Bye</h3>
+      <h5>Children</h5>
+    </>
+  );
+  ```
+
+### 05. Element 찍어내기
+
+- React Component로 사용하려면 Pascal case로 사용할 것
+
+  ```jsx
+  const rootElement = document.getElementById('root');
+  const Paint = ({ title, description, children }) => (
+    <>
+      <h1>{title}</h1>
+      <h3>{description}</h3>
+      {children}
+    </>
+  );
+
+  const element = (
+    <>
+      <Paint title="Good" description="good">
+        <span>Hi</span>
+      </Paint>
+      <Paint title="Bad" description="bad" />
+      <Paint title="So so" description="so so" />
+    </>
+  );
+  ```
