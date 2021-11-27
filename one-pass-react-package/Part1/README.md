@@ -209,3 +209,100 @@
 - react 공식문서 참조, [링크](https://ko.reactjs.org/docs/reconciliation.html)
 - Virtual DOM
 - Diffing Algorithm
+
+### 10. 이벤트 핸들러 써보기 1
+
+- [Vanilla JS](https://www.w3schools.com/js/js_events.asp)
+  - addEventListener
+  - on{event}
+- React.js
+
+  - on{Event}
+
+  ```jsx
+  const rootElement = document.getElementById('root');
+
+  const handleClick = () => alert('pressed');
+  const element = (
+    <button onClick={handleClick} onMouseOut={() => alert('bye')}>
+      Press
+    </button>
+  );
+  ReactDOM.render(element, rootElement);
+  ```
+
+### 11. 이벤트 핸들러 써보기 2
+
+- 예제
+
+  - 간단한 검색창 만들어보기
+  - input / button
+  - onChange / onClick + Global variable
+
+  ```jsx
+  const rootElement = document.getElementById('root');
+
+  const state = {
+    keyword: '',
+    typing: false,
+    result: '',
+  };
+
+  const App = () => {
+    function handleChange(event) {
+      setState({
+        typing: true,
+        keyword: event.target.value,
+      });
+    }
+
+    function handleClick() {
+      setState({
+        typing: false,
+        result: `We find results of ${state.keyword}`,
+      });
+    }
+
+    return (
+      <>
+        <input onChange={handleChange} />
+        <button onClick={handleClick}>search</button>
+        <p>{state.typing ? `Looking for ${state.keyword}...` : state.result}</p>
+      </>
+    );
+  };
+
+  function setState(newState) {
+    Object.assign(state, newState);
+    render();
+  }
+
+  function render() {
+    ReactDOM.render(<App />, rootElement);
+  }
+
+  render();
+  ```
+
+### 12. 중간 복습 2
+
+- 리액트의 리랜더링 알아보기
+
+  - Vanilla JS > 변경으로 인해 Element를 다시 그림
+  - React > 변경된 부분만 다시 그림
+
+- 리액트의 리랜더링 알아보기 2
+
+  - 리액트의 element > 불변 객체
+  - 변경 사항 반영 > 리액트에게 일임
+  - 리액트의 비교 > Reconciliation
+  - Virtual DOM > 비교시 활용
+
+- 이벤트 핸들러 써보기
+
+  - Vanilla JS > on{event} / addEventListener
+  - 리액트 > on{Event}
+
+- 이벤트 핸들러 써보기 2
+  - Object.assign > 객체 내용 복사
+  - 전역 변수 변경 > ReactDOM.render
