@@ -306,3 +306,102 @@
 - 이벤트 핸들러 써보기 2
   - Object.assign > 객체 내용 복사
   - 전역 변수 변경 > ReactDOM.render
+
+### 13. 컴포넌트 상태 다루기
+
+- DOM : 논리 트리
+- 컴포넌트 : 엘리먼트의 집합
+- 엘리먼트 : 요소
+- 참고 - https://ko.reactjs.org/docs/rendering-elements.html
+
+  ```jsx
+  const rootElement = document.getElementById('root');
+
+  const App = () => {
+    const [keyword, setKeyword] = React.useState('');
+    const [result, setResult] = React.useState('');
+    const [typing, setTyping] = React.useState(false);
+
+    function handleChange(event) {
+      setKeyword(event.target.value);
+      setTyping(true);
+    }
+
+    function handleClick() {
+      setTyping(false);
+      setResult(`We find results of ${result}`);
+    }
+
+    return (
+      <>
+        <input onChange={handleChange} />
+        <button onClick={handleClick}>search</button>
+        <p>{typing ? `Looking for ${keyword}...` : result}</p>
+      </>
+    );
+  };
+
+  ReactDOM.render(<App />, rootElement);
+  ```
+
+- 컴포넌트 > 엘리먼트의 집합
+- useState > 상태값을 관리해주는 훅
+
+### 14. 컴포넌트 사이드이펙트 다루기
+
+- 리액트에서의 사이드이펙트 > `부수 효과`
+
+  ```jsx
+  // 아래 소스에서 keyword 초기 state값 조회가 오래 걸린다면?
+  // 함수를 param으로 넘겨서 lazy initializing 처리를 할 수 있다!
+  const App = () => {
+    const [keyword, setKeyword] = React.useState(
+      // localStorage.getItem('keyword')
+      () => {
+        console.log('initialize');
+        return localStorage.getItem('keyword');
+      }
+    );
+    const [result, setResult] = React.useState('');
+    const [typing, setTyping] = React.useState(false);
+
+    // 해당 부분은 사용자 UI 입력에 따라 매번 호출된다!
+    console.log('render');
+
+    React.useEffect(() => {
+      // 두 번째 파라미터에 빈 배열을 입력하면 해당 컴포넌트 렌더시, 최초 한번만 실행된다!
+      console.log('effect');
+      localStorage.setItem('keyword', keyword);
+    }, []);
+
+    /*
+    React.useEffect(() => {
+      // 두 번째 파라미터에 변경값을 배열로 입력하면, 해당 값이 변경될 때 마다 아래 내용이 실행된다!
+      console.log('effect');
+      localStorage.setItem('keyword', keyword);
+    }, [keyword, typing]);
+    */
+
+    function handleChange(event) {
+      setKeyword(event.target.value);
+      setTyping(true);
+    }
+
+    function handleClick() {
+      setTyping(false);
+      setResult(`We find results of ${result}`);
+    }
+
+    return (
+      <>
+        <input onChange={handleChange} />
+        <button onClick={handleClick}>search</button>
+        <p>{typing ? `Looking for ${keyword}...` : result}</p>
+      </>
+    );
+  };
+  ```
+
+- 사이드 이펙트 > 부수 효과
+- useState > lazy initialize
+- useEffect > dependency array
