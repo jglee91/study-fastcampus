@@ -585,3 +585,15 @@
   - useEffect > render가 끝난 뒤
   - update시 > useEffect clean up / useEffect
   - dependency array > 전달받은 값의 변화 있는 경우에만
+
+### 19. 리액트 Element에 스타일 입히기
+
+- className > 문자열
+- style > 객체, camelCase, className보다 먼저 적용
+
+### 20. Ref로 DOM 다루기
+
+- ex) input element가 있고 화면이 뜨자마자 `focus`를 주고 싶다면?
+  - [Vanilla JS] ?.focus();
+- Vanilla JS > document.get~ / document.query~
+- React > useRef / ref
