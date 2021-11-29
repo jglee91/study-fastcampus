@@ -405,3 +405,183 @@
 - 사이드 이펙트 > 부수 효과
 - useState > lazy initialize
 - useEffect > dependency array
+
+### 15. 커스텀 훅 만들기
+
+- 커스텀 훅 > use{Name}
+
+  ```jsx
+  React.useEffect(() => {
+    // keyword가 변경될 때에도 result가 localStorage에 저장되는 현상 발생!
+    localStorage.setItem('keyword', keyword);
+    localStorage.setItem('result', result);
+  }, [keyword, result]);
+
+  /* -------------------------------------------------- */
+
+  function useLocalStorage(itemName, value = '') {
+    const [state, setState] = React.useState(() => {
+      return localStorage.getItem(itemName) || value;
+    });
+
+    React.useEffect(() => {
+      localStorage.setItem(itemName, state);
+    }, [state]);
+
+    return [state, setState];
+  }
+
+  const App = () => {
+    const [keyword, setKeyword] = useLocalStorage('keyword');
+    const [result, setResult] = useLocalStorage('result');
+    const [typing, setTyping] = useLocalStorage('typing', false);
+
+    // ...
+  };
+  ```
+
+- 반복 > 함수로
+- 훅들이 반복 > custom hook
+
+### 16. Hook Flow 이해하기 1
+
+- 훅의 호출 타이밍
+- 간단 예제로 살펴보기
+
+  ```jsx
+  const rootElement = document.getElementById('root');
+
+  const App = () => {
+    console.log('App render start');
+
+    const [show, setShow] = React.useState(() => {
+      console.log('App useState');
+      return false;
+    });
+
+    // side effect의 실행 시점은 각 component들의 render가 끝난 후이다.
+    React.useEffect(() => {
+      // dependency가 없으면, App component가 re-rendering 될 때마다 실행
+      console.log('App useEffect, no deps');
+    });
+    React.useEffect(() => {
+      // 빈 dependency라면, 최초 한번만 실행
+      console.log('App useEffect, empty deps');
+    }, []);
+    React.useEffect(() => {
+      // dependency의 값이 변경될 때마다 실행
+      console.log('App useEffect, [show]');
+    }, [show]);
+
+    function handleClick() {
+      setShow((prev) => !prev);
+    }
+
+    return (
+      <>
+        <button onClick={handleClick}>Search</button>
+        {
+          show ? (
+            <input />
+            <p></p>
+          ) : null
+        }
+      </>
+    );
+  };
+
+  ReactDom.render(<App />, rootElement);
+  console.log('App render end');
+  ```
+
+- hook flow > hook들의 호출 타이밍
+- useState > setState시 prev값이 주입됨
+
+### 17. Hook Flow 이해하기 2
+
+- useEffect > render가 끝난 뒤
+- update시 > useEffect clean up / useEffect
+- dependency array > 전달받은 값의 변화 있는 경우에만
+
+  ```jsx
+  const rootElement = document.getElementById('root');
+
+  const Child = () => {
+    console.log('Child render start');
+
+    const [text, setText] = useState(() => {
+      console.log('Child useState');
+      return '';
+    });
+
+    // 호출 순서 : parent 렌더 > child 렌더 > child side-effect > parent side-effect
+    React.useEffect(() => {
+      console.log('Child useEffect, no deps');
+
+      return () => {
+        console.log('Child useEffect [Cleanup], no deps');
+      };
+    });
+    React.useEffect(() => {
+      console.log('Child useEffect, empty deps');
+
+      return () => {
+        console.log('Child useEffect [Cleanup], empty deps');
+      };
+    }, []);
+    React.useEffect(() => {
+      console.log('Child useEffect, [text]');
+
+      return () => {
+        console.log('Child useEffect [Cleanup], [text]');
+      };
+    }, [text]);
+
+    function handleChange(event) {
+      setText(event.target.value);
+    }
+
+    const element = (
+      <>
+        <input onChange={handleChange} />
+        <p>{text}</p>
+      </>
+    );
+
+    console.log('Child render end');
+    return element;
+  };
+
+  const App = () => {
+    // ...
+
+    return (
+      <>
+        <button onClick={handleClick}>Search</button>
+        {show ? <Child /> : null}
+      </>
+    );
+  };
+
+  ReactDom.render(<App />, rootElement);
+  ```
+
+### 18. 중간 복습 3
+
+- 컴포넌트 상태 다루기
+  - 컴포넌트 > 엘리먼트의 집합
+  - useState > 상태값을 관리해주는 hook
+- 컴포넌트 사이드 이펙트 다루기
+  - 사이드 이펙트 > 부수 효과
+  - useState > lazy initialize
+  - useEffect > dependency array
+- 커스텀 훅 만들기
+  - 반복 > 함수로
+  - 훅들이 반복 > custom Hook으로
+- hook flow 이해하기
+  - hook flow > hook들의 호출 타이밍
+  - useState > setState시 prev값이 주입된다
+- hook flow 이해하기2
+  - useEffect > render가 끝난 뒤
+  - update시 > useEffect clean up / useEffect
+  - dependency array > 전달받은 값의 변화 있는 경우에만
