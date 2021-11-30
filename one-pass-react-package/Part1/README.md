@@ -609,3 +609,26 @@
 - `uncontrolled` vs `controlled`
 - validation > onChange
 - controlled > input의 value를 직접 관리
+
+### 23. Error 다루기
+
+- Error Boundary > Catch Error해서 보여주기
+- Fallback > Error가 났을때 보여줄 컴포넌트
+
+### 24. 중간복습 4
+
+- 리액트 Element에 스타일 입히기
+  - className > 문자열
+  - style > 객체, 카멜케이스, className보다 먼저
+- Ref로 Dom 다루기
+  - Vanilla JS > document.get~ / document.query~
+  - React > useRef / ref
+- Form 다루기
+  - onSubmit > event.preventDefault()
+  - event.target.elements > console.dir(element)
+- Form 다루기2
+  - validation > onChange
+  - controlled > input의 value를 직접 관리
+- Error 다루기
+  - Error Boundary > Catch Error해서 보여주기
+  - Fallback > Error가 났을때 보여줄 컴포넌트
