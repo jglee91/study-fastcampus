@@ -597,3 +597,15 @@
   - [Vanilla JS] ?.focus();
 - Vanilla JS > document.get~ / document.query~
 - React > useRef / ref
+
+### 21. Form 다루기 1
+
+- 기본 Form - label, input, submit
+- onSubmit > event.preventDefault()
+- event.target.elements > console.dir(element)
+
+### 22. Form 다루기 2
+
+- `uncontrolled` vs `controlled`
+- validation > onChange
+- controlled > input의 value를 직접 관리
