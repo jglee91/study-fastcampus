@@ -632,3 +632,55 @@
 - Error 다루기
   - Error Boundary > Catch Error해서 보여주기
   - Fallback > Error가 났을때 보여줄 컴포넌트
+
+### 25. Key와 리랜더링 알아보기 1
+
+- key-value
+- DB, Dictionary, Json, Ojbect, ...
+
+### 26. Key와 리랜더링 알아보기 2
+
+- 재사용 > key를 제대로 줘야 재사용 가능
+- 제대로 준다 > 중복없고, 바뀌지않는
+
+### 27. 상태 끌어올리기
+
+- 로그인 폼 > id / password / button
+- 형제 컴포넌트의 상태 궁금 > 필요하면 부로모 lifting up
+- Props drilling > 과도한 lifting은 drilling을 야기
+
+### 28. 데이터 Fetch 해보기
+
+- Fetch API > 네트워크 통신 도구
+- 상황별 핸들링 > 로딩 / 데이터 / 에러
+
+### 29. 중간복습 5
+
+- Key와 리렌더링 알아보기
+  - Key > Value를 특정하는 이름
+- Key와 리렌더링 알아보기 2
+  - 재사용 > key를 제대로 줘야 재사용 간으
+  - 제대로 준다 > 중복없고, 바뀌지않는
+- 상태 끌어올리기
+  - 형제 컴포넌트의 상태 궁금 > 필요하면 부모로 lifting up
+  - Props drilling > 과도한 lifting은 drilling을 야기
+- 데이터 Fetch 해보기
+
+  - Fetch api > 네트워크 통신 도구
+  - 상황별 핸들링 > 로딩 / 데이터 / 에러
+
+### 30. 리액트 맛보기 마무리
+
+- DOM 다루기 / Element 생성하기 정리
+- JSX와 Babel / JSX 다루기
+- Element 찍어내기
+- 리액트의 리렌더링 알아보기
+- 컴포넌트 상태 다루기
+- 컴포넌트 사이드 이펙트 다루기
+- 커스텀 훅 만들기
+- hook flow 이해하기
+- hook flow 이해하기2
+- Ref로 Dom 다루기
+- Key와 리렌더링 알아보기
+- 상태 끌어올리기
+- 데이터 Fetch 해보기

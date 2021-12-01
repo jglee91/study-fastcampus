@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const rootElement = document.getElementById('root');
+
+      const todos = [
+        [
+          { id: 1, value: 'Wash dishes' },
+          { id: 2, value: 'Clean the bed' },
+          { id: 3, value: 'Running' },
+          { id: 4, value: 'Learning' },
+        ],
+        [
+          { id: 4, value: 'Learning' },
+          { id: 1, value: 'Wash dishes' },
+          { id: 2, value: 'Clean the bed' },
+          { id: 3, value: 'Running' },
+        ],
+        [
+          { id: 3, value: 'Running' },
+          { id: 1, value: 'Wash dishes' },
+          { id: 2, value: 'Clean the bed' },
+          { id: 4, value: 'Learning' },
+        ],
+        [
+          { id: 2, value: 'Clean the bed' },
+          { id: 1, value: 'Wash dishes' },
+          { id: 3, value: 'Running' },
+          { id: 4, value: 'Learning' },
+        ],
+      ];
+
+      const App = () => {
+        const [items, setItems] = React.useState(todos[0]);
+
+        React.useEffect(() => {
+          const interval = setInterval(() => {
+            const random = Math.floor(Math.random() * 3);
+            setItems(todos[random]);
+          }, 1000);
+
+          return () => clearInterval(interval);
+        });
+
+        const handleDoneClick = (todo) => {
+          setItems((items) => items.filter((item) => item !== todo));
+        };
+
+        const handleRestoreClick = () => {
+          if (todos.length > items.length) {
+            setItems((items) => [
+              ...items,
+              todos.find((item) => !items.includes(item)),
+            ]);
+          }
+        };
+
+        return (
+          <>
+            {items.map((todo) => (
+              // key를 주지 않으면, button 컴포넌트의 글자만 변경되는 상태로 focus가 유지됨
+              <div key={todo.id}>
+                <button onClick={() => handleDoneClick(todo)}>
+                  {todo.value}
+                </button>
+              </div>
+            ))}
+            <button onClick={handleRestoreClick}>Restore</button>
+          </>
+        );
+      };
+
+      ReactDOM.render(<App />, rootElement);
+    </script>
+  </body>
+</html>
