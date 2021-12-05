@@ -55,3 +55,31 @@
 - Class component > State LifeCycle
 - Functional component / 훅으로 관리
 - 유의사항 > 직접 수정 X / 비동기적일 수 있음
+
+### 06. 컴포넌트 생명주기
+
+> https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+
+- constructor > state 초기화 및 메서드 바인딩
+- componentDidMount > Dom 노드 초기화 및 데이터 fetch
+- componentWillUnmount > 타이머 제거 및 요청 취소 및 구독 해제
+- Functional Component > hook으로 대부분 구현 가능
+
+### 07. 이벤트
+
+> https://ko.reactjs.org/docs/events.html
+
+- 합성이벤트(SyntheticEvent) - 브라우저마다 이벤트 동작이 조금씩 다를 수 있음
+- on{Event}Capture - 자식보다 부모가 먼저 event 실행이 필요할 때
+- 합성 이벤트 > 네이티브 인터페이스와 유사하지만 직접 대응되지 않음
+- Bubble / Capture > `Capture > target > Bubble`
+- return false > `e.preventDefault()`를 수동으로 명시해주어야 함
+
+### 08. 조건부 렌더링
+
+> https://ko.reactjs.org/docs/conditional-rendering.html
+
+- if > if (condition) { return A; } else { return B; }
+- && > condition && A, `falsy 주의`
+- 삼항연산자 > condition ? A : B
+- 아예 안그리고 싶은 경우 > return null;
