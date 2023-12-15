@@ -108,3 +108,24 @@
 - Next.js 프로임워크 구조 살펴보기
 - Data Fetching
 - Layout / Pages / Image
+
+5. Next.js 기본 4(Routing)
+
+- Next.js의 Router는 file-system 기반
+- `pages/` or `src/pages/`
+
+  - 위 둘 다 있으면 `pages/` 의 우선순위가 더 높음
+
+- 절대경로 설정
+
+  ```json
+  { "compilerOptions": { "baseUrl": "src" } }
+  ```
+
+- slug
+  - wildcard처럼 동작
+    - pages/category/[slug].js => /category/:slug
+    - pages/[username]/info.js => /:username/info
+    - pages/cart/[...slug].js => /cart/\*
+  - 동일 형식일 경우, 명시적 디렉토리/파일명이 우선
+    - ex) /category/info => pages/category/[slug].js가 동작
