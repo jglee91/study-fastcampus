@@ -129,3 +129,38 @@
     - pages/cart/[...slug].js => /cart/\*
   - 동일 형식일 경우, 명시적 디렉토리/파일명이 우선
     - ex) /category/info => pages/category/[slug].js가 동작
+
+6. Next.js 기본 5(Shallow Routing)
+
+- Dynamic Routes
+
+  - pages/category/[slug].js
+
+    ```js
+    import { useRouter } from 'next/router';
+
+    // ...
+
+    const router = useRouter();
+    const { slug } = router.query; // /category/food
+    const { slug, from } = router.query; // /category/food?from=event
+    ```
+
+- 다중 슬러그
+
+  - pages/[username]/[info].js
+    ```js
+    const { username, info } = router.query;
+    ```
+
+- optional 슬러그
+
+  - pages/cart/[...slug].js : /cart로 접근시 404 error
+  - pages/cart/[[.slug]].js : /cart로 접근시 200 ok
+
+- Shallow Routing
+  - getServerSideProps / getStaticProps 등을 재실행하지 않고 현재 상태를 유지한 채로 url을 바꾸는 방법
+  - URL을 바꾸는 3가지 방식
+    - location.replace(url) : state 유지 X (re-render)
+    - router.push(url) : state 유지 O / date fetching O
+    - router.push(url, as, { shallow: true }) : state 유지 O / date fetching X
