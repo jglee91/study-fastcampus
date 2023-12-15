@@ -164,3 +164,22 @@
     - location.replace(url) : state 유지 X (re-render)
     - router.push(url) : state 유지 O / date fetching O
     - router.push(url, as, { shallow: true }) : state 유지 O / date fetching X
+
+7. Next.js 기본 6(API Routes)
+
+- Next.js 가 제공하는 API Routes
+
+  - pages/api/\*
+
+- API Middlewares
+
+  - req.cookie, req.query, ...
+  - cors
+
+- Response
+  - res.status
+  - res.json
+  - res.redirect
+  - res.send
+
+8. 정리 2
